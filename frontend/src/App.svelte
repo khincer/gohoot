@@ -2,8 +2,20 @@
   import svelteLogo from './assets/svelte.svg'
   import viteLogo from '/vite.svg'
   import Counter from './lib/Counter.svelte'
-</script>
 
+  async function getQuizzes() {
+    let response = await fetch("http://localhost:3000/api/quizzes",)
+
+    if(!response.ok) {
+      alert("failed");
+      return;
+    }
+
+    let jsonResponse = await response.json();
+    console.log(jsonResponse);
+  }
+</script>
+<button on:click={getQuizzes}>Get quizzes</button>
 <main>
   <div>
     <a href="https://vitejs.dev" target="_blank" rel="noreferrer">

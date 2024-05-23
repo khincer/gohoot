@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -15,6 +16,7 @@ var quizCollection *mongo.Collection
 
 func main() {
 	app := fiber.New()
+	app.Use(cors.New())
 
 	app.Get("/", index)
 	app.Get("/api/quizzes", getQuizzes)
